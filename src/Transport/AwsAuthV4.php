@@ -16,16 +16,16 @@ class AwsAuthV4 extends Guzzle
 {
     protected function _getGuzzleClient(bool $persistent = true): Client
     {
-        if (!$persistent || !self::$_guzzleClientConnection) {
+        if (!$persistent || !$this->_guzzleClientConnection) {
             $stack = HandlerStack::create(GuzzleHttp\choose_handler());
             $stack->push($this->getSigningMiddleware(), 'sign');
 
-            self::$_guzzleClientConnection = new Client([
+            $this->_guzzleClientConnection = new Client([
                 'handler' => $stack,
             ]);
         }
 
-        return self::$_guzzleClientConnection;
+        return $this->_guzzleClientConnection;
     }
 
     protected function _getBaseUrl(Connection $connection): string
