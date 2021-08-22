@@ -53,7 +53,7 @@ class Param implements ArrayableInterface, \Countable
      *
      * @return $this
      */
-    public function setParam($key, $value)
+    public function setParam(string $key, $value)
     {
         $this->_params[$key] = $value;
 
@@ -100,13 +100,13 @@ class Param implements ArrayableInterface, \Countable
      *
      * @return mixed Key value
      */
-    public function getParam($key)
+    public function getParam(string $key, $default = null)
     {
-        if (!$this->hasParam($key)) {
+        if (!$this->hasParam($key) && is_null($default)) {
             throw new InvalidException('Param '.$key.' does not exist');
         }
 
-        return $this->_params[$key];
+        return $this->_params[$key] ?? $default;
     }
 
     /**
@@ -146,7 +146,7 @@ class Param implements ArrayableInterface, \Countable
      *
      * @return array
      */
-    protected function _convertArrayable(array $array)
+    protected function _convertArrayable(array $array): array
     {
         $arr = [];
 
