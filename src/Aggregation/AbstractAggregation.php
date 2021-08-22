@@ -136,7 +136,7 @@ abstract class AbstractAggregation extends Param implements NameableInterface
         return $array;
     }
 
-    protected function _getBaseName()
+    protected function _getBaseName(): string
     {
         $shortName = (new \ReflectionClass($this))->getShortName();
         $shortName = \preg_replace('/Aggregation$/', '', $shortName);

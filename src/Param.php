@@ -170,7 +170,7 @@ class Param implements ArrayableInterface, \Countable
      *
      * @return string name
      */
-    protected function _getBaseName()
+    protected function _getBaseName(): string
     {
         return Util::toSnakeCase((new \ReflectionClass($this))->getShortName());
     }

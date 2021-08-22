@@ -12,7 +12,7 @@ use Elastica\Util;
  */
 abstract class AbstractQuery extends Param
 {
-    protected function _getBaseName()
+    protected function _getBaseName(): string
     {
         $shortName = (new \ReflectionClass($this))->getShortName();
         $shortName = \preg_replace('/Query$/', '', $shortName);
