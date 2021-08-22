@@ -122,7 +122,7 @@ class Guzzle extends AbstractTransport
                 $req = $req->withMethod(Request::POST);
             }
 
-            if ($this->hasParam('postWithRequestBody') && true == $this->getParam('postWithRequestBody')) {
+            if ($connection->hasParam('postWithRequestBody') && true == $connection->getParam('postWithRequestBody')) {
                 $request->setMethod(Request::POST);
                 $req = $req->withMethod(Request::POST);
             }

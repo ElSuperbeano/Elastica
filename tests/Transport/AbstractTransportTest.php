@@ -85,26 +85,9 @@ class AbstractTransportTest extends BaseTest
         AbstractTransport::create($transport, new Connection());
     }
 
-    /**
-     * @group unit
-     */
-    public function testCanInjectParamsWhenUsingArray(): void
+    public function hasParam()
     {
-        $connection = new Connection();
-        $params = [
-            'param1' => 'some value',
-            'param3' => 'value3',
-        ];
 
-        $transport = AbstractTransport::create([
-            'type' => 'Http',
-            'param1' => 'value1',
-            'param2' => 'value2',
-        ], $connection, $params);
-
-        $this->assertSame('value1', $transport->getParam('param1'));
-        $this->assertSame('value2', $transport->getParam('param2'));
-        $this->assertSame('value3', $transport->getParam('param3'));
     }
 
     /**

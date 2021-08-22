@@ -123,7 +123,7 @@ class Http extends AbstractTransport
         $headers[] = 'Content-Type: '.$request->getContentType();
 
         if (!empty($data) || '0' === $data) {
-            if ($this->hasParam('postWithRequestBody') && true == $this->getParam('postWithRequestBody')) {
+            if ($connection->hasParam('postWithRequestBody') && true == $connection->getParam('postWithRequestBody')) {
                 $httpMethod = Request::POST;
             }
 

@@ -4,7 +4,6 @@ namespace Elastica\Transport;
 
 use Elastica\Connection;
 use Elastica\Exception\InvalidException;
-use Elastica\Param;
 use Elastica\Request;
 use Elastica\Response;
 
@@ -13,7 +12,7 @@ use Elastica\Response;
  *
  * @author Nicolas Ruflin <spam@ruflin.com>
  */
-abstract class AbstractTransport extends Param
+abstract class AbstractTransport
 {
     /**
      * @var Connection
@@ -79,10 +78,6 @@ abstract class AbstractTransport extends Param
     public static function create($transport, Connection $connection, array $params = []): AbstractTransport
     {
         if (\is_array($transport) && isset($transport['type'])) {
-            $transportParams = $transport;
-            unset($transportParams['type']);
-
-            $params = \array_replace($params, $transportParams);
             $transport = $transport['type'];
         }
 
@@ -104,10 +99,6 @@ abstract class AbstractTransport extends Param
 
         if ($transport instanceof self) {
             $transport->setConnection($connection);
-
-            foreach ($params as $key => $value) {
-                $transport->setParam($key, $value);
-            }
         } else {
             throw new InvalidException('Invalid transport');
         }
