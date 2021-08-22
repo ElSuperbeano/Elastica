@@ -34,7 +34,7 @@ class Guzzle extends AbstractTransport
      *
      * @var Client Guzzle client to reuse
      */
-    protected static $_guzzleClientConnection;
+    protected $_guzzleClientConnection;
 
     /**
      * Makes calls to the elasticsearch server.
@@ -160,11 +160,11 @@ class Guzzle extends AbstractTransport
      */
     protected function _getGuzzleClient($persistent = true)
     {
-        if (!$persistent || !self::$_guzzleClientConnection) {
-            self::$_guzzleClientConnection = new Client();
+        if (!$persistent || !$this->_guzzleClientConnection) {
+            $this->_guzzleClientConnection = new Client();
         }
 
-        return self::$_guzzleClientConnection;
+        return $this->_guzzleClientConnection;
     }
 
     /**
