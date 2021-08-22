@@ -20,16 +20,6 @@ abstract class AbstractTransport extends Param
      */
     protected $_connection;
 
-    /**
-     * Construct transport.
-     */
-    public function __construct(?Connection $connection = null)
-    {
-        if ($connection) {
-            $this->setConnection($connection);
-        }
-    }
-
     public function getConnection(): Connection
     {
         return $this->_connection;
